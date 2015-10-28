@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 namespace ConsolePlusLib.Configuration
 {
     /// <summary>
-    /// Json模式配置
+    /// Json配置
     /// </summary>
     public partial class JsonConfiguration
     {
@@ -19,6 +19,10 @@ namespace ConsolePlusLib.Configuration
         private Dictionary<String, Object> dictionary { set; get; }
         private JavaScriptSerializer serializer = new JavaScriptSerializer();
 
+        /// <summary>
+        /// 构造新Json配置
+        /// </summary>
+        /// <param name="file"></param>
         public JsonConfiguration(String file)
         {
             this.file = file;
@@ -58,7 +62,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取值
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns></returns>
+        /// <returns>值</returns>
         public String getValue(String path)
         {
             return getDictionaryValue(this.dictionary, path);
@@ -68,7 +72,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取字符串
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>String</returns>
+        /// <returns>值</returns>
         public String getString(String path)
         {
             return getDictionaryValue(this.dictionary, path);
@@ -78,7 +82,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取整数
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>Int32</returns>
+        /// <returns>值</returns>
         public Int32 getInteger(String path)
         {
             try
@@ -95,7 +99,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取布尔值
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>Boolean</returns>
+        /// <returns>值</returns>
         public Boolean getBoolean(String path)
         {
             switch (getDictionaryValue(this.dictionary, path).ToLower())
@@ -113,7 +117,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取IP地址
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>IPAddress</returns>
+        /// <returns>值</returns>
         public IPAddress getIPAddress(String path)
         {
             try
@@ -131,7 +135,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取单精小数
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>float</returns>
+        /// <returns>值</returns>
         public float getFloat(String path)
         {
             try
@@ -148,7 +152,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取小数
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>Double</returns>
+        /// <returns>值</returns>
         public Double getDouble(String path)
         {
             try
@@ -166,7 +170,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取长精小数
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>long</returns>
+        /// <returns>值</returns>
         public long getLong(String path)
         {
             try
@@ -184,7 +188,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取表
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>Dictionary<String, Object></returns>
+        /// <returns>值<String, Object></returns>
         public Dictionary<String, Object> getMap(String path)
         {
             return getDictionaryMap(this.dictionary, path);
@@ -194,7 +198,7 @@ namespace ConsolePlusLib.Configuration
         /// 获取字符串列表
         /// </summary>
         /// <param name="path">键路径</param>
-        /// <returns>ArrayList</returns>
+        /// <returns>值</returns>
         public ArrayList getList(String path)
         {
             return getDictionaryList(this.dictionary, path);
@@ -206,7 +210,7 @@ namespace ConsolePlusLib.Configuration
         /// </summary>
         /// <param name="path">键路径</param>
         /// <param name="value">值</param>
-        /// <returns>Boolean</returns>
+        /// <returns>是否成功</returns>
         public Boolean set(String path, String value)
         {
             return setDictionaryValue(this.dictionary, path, value);
@@ -217,7 +221,7 @@ namespace ConsolePlusLib.Configuration
         /// </summary>
         /// <param name="path">键路径</param>
         /// <param name="value">值</param>
-        /// <returns>Boolean</returns>
+        /// <returns>是否成功</returns>
         public Boolean set(String path, Boolean value)
         {
             return setDictionaryValue(this.dictionary, path, value);
@@ -228,7 +232,7 @@ namespace ConsolePlusLib.Configuration
         /// </summary>
         /// <param name="path">键路径</param>
         /// <param name="value">值</param>
-        /// <returns>Boolean</returns>
+        /// <returns>是否成功</returns>
         public Boolean set(String path, ArrayList value)
         {
             return setDictionaryValue(this.dictionary, path, value);
@@ -238,7 +242,7 @@ namespace ConsolePlusLib.Configuration
         /// <summary>
         /// 该项是否存在
         /// </summary>
-        /// <returns>Boolean</returns>
+        /// <returns>是否存在</returns>
         public Boolean hasConfigurationSection(String path)
         {
             try

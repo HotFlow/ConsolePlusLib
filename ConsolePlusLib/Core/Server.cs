@@ -5,26 +5,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsolePlusLib.Core.Extendsions;
+using ConsolePlusLib.Core.PluginEngines;
+using ConsolePlusLib.Plugin;
+using ConsolePlusLib.Executor;
 
 namespace ConsolePlusLib.Core
 {
     /// <summary>
-    /// 服务器类
+    /// 服务器
     /// </summary>
     public class Server
     {
         /// <summary>
+        /// 获取插件列表
+        /// </summary>
+        /// <returns></returns>
+        public List<PluginInfo> getPlugins()
+        {
+            return Main.Plugins;
+        }
+
+        /// <summary>
         /// 获取所有命令
         /// </summary>
         /// <returns>所有命令<String></returns>
-        public List<String> getCommandList()
+        public Dictionary<Command, ConsolePlugin> getCommands()
         {
-            List<String> temp = new List<String>();
-            foreach (String command in Main.Commands.Keys)
-            {
-                temp.Add(command);
-            }
-            return temp;
+            return Main.Commands;
         }
 
         /// <summary>
@@ -33,36 +40,16 @@ namespace ConsolePlusLib.Core
         /// <param name="command">命令</param>
         /// <param name="annotation">说明</param>
         /// <returns>是否成功</returns>
-        public Boolean addCommand(String command, String annotation)
+        public Boolean addCommand(ConsolePlugin plugin,Command command)
         {
             try
             {
-                Main.Commands.Add(command, annotation);
+                Main.Commands.Add(command, plugin);
                 return true;
             }
             catch (ArgumentException)
             {
                 System.Out.println(Level.Severe, "命令 [" + command + "] 已存在!");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// 更改服务端命令的说明
-        /// </summary>
-        /// <param name="command">命令</param>
-        /// <param name="annotation">说明</param>
-        /// <returns>是否成功</returns>
-        public Boolean setCommandAnnotation(String command, String annotation)
-        {
-            try
-            {
-                Main.Commands[command] = annotation;
-                return true;
-            }
-            catch (ArgumentNullException)
-            {
-                System.Out.println(Level.Severe, "命令 [" + command + "] 不存在!");
                 return false;
             }
         }
@@ -74,11 +61,11 @@ namespace ConsolePlusLib.Core
         /// <returns>注释</returns>
         public String getCommandAnnotation(String command)
         {
-            foreach(String c in this.getCommandList())
+            foreach(Command c in this.getCommands().Keys)
             {
-                if(c.equalIgnoreCase(command))
+                if(c.getCommand().equalIgnoreCase(command))
                 {
-                    return Main.Commands[command];
+                    return c.getAnnotation();
                 }
             }
 
@@ -94,7 +81,37 @@ namespace ConsolePlusLib.Core
         {
             try
             {
-                Main.Commands.Remove(command);
+                foreach(Command c in Main.Commands.Keys)
+                {
+                    if(c.getCommand().equalIgnoreCase(command))
+                    {
+                        Main.Commands.Remove(c);
+                    }
+                }
+                return true;
+            }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 移除服务端命令
+        /// </summary>
+        /// <param name="command">命令</param>
+        /// <returns>是否存在</returns>
+        public Boolean removeCommand(Command command)
+        {
+            try
+            {
+                foreach (Command c in Main.Commands.Keys)
+                {
+                    if (c.Equals(command))
+                    {
+                        Main.Commands.Remove(c);
+                    }
+                }
                 return true;
             }
             catch (ArgumentNullException)
@@ -108,9 +125,9 @@ namespace ConsolePlusLib.Core
         /// </summary>
         public void removeAllCommands()
         {
-            foreach (String command in this.getCommandList())
+            foreach (Command command in this.getCommands().Keys)
             {
-                this.removeCommand(command);
+                this.removeCommand(command.getCommand());
             }
         }
     }

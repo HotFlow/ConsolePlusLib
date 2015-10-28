@@ -10,6 +10,9 @@ using ConsolePlusLib.Core.Extendsions;
 
 namespace ConsolePlusLib.Core.Output
 {
+    /// <summary>
+    /// 输出器
+    /// </summary>
     public class Printer
     {
         private RichTextBox outputBox { get; set; }

@@ -15,16 +15,15 @@ namespace ConsolePlusLib.Events.Server
     /// </summary>
     public class ServerExecutedCommandArg : EventArgs
     {
-        private String Command { get; set; }
+        private Command Command { get; set; }
         private String[] Args { get; set; }
 
         /// <summary>
         /// 命令信息
         /// </summary>
-        /// <param name="senderType"></param>
         /// <param name="command"></param>
         /// <param name="args"></param>
-        public ServerExecutedCommandArg(String command, String[] args)
+        public ServerExecutedCommandArg(Command command, String[] args)
         {
             this.Command = command;
             this.Args = args;
@@ -34,7 +33,7 @@ namespace ConsolePlusLib.Events.Server
         /// 获取命令
         /// </summary>
         /// <returns></returns>
-        public String getCommand()
+        public Command getCommand()
         {
             return this.Command;
         }
@@ -71,7 +70,7 @@ namespace ConsolePlusLib.Events.Server
         /// <summary>
         /// 命令
         /// </summary>
-        private String Command { get; set; }
+        private Command Command { get; set; }
 
         /// <summary>
         /// 参数
@@ -81,7 +80,7 @@ namespace ConsolePlusLib.Events.Server
         /// <summary>
         /// 构造服务器接收命令事件
         /// </summary>
-        public ServerCommandReciver(Senders.Console sender, String command, String[] args)
+        public ServerCommandReciver(Senders.Console sender, Command command, String[] args)
         {
             this.Sender = sender;
             this.Command = command;
@@ -96,12 +95,12 @@ namespace ConsolePlusLib.Events.Server
             ServerExecutedCommandArg arguments = new ServerExecutedCommandArg(this.Command, this.Args);
 
             int size = 0;
-            foreach (String command in Main.getServer().getCommandList())
+            foreach (Command command in Main.getServer().getCommands().Keys)
             {
-                if (command.equalIgnoreCase(this.Command))
+                if (command.Equals(this.Command))
                 {
                     size++;
-                    System.Out.println("Console issued server command: /" + this.Command);
+                    System.Out.println("Console issued server command: /" + this.Command.getCommand());
 
                     if (ServerExecutedCommandEvent != null)
                     {
@@ -124,7 +123,7 @@ namespace ConsolePlusLib.Events.Server
 
                             Object[] parameter = new Object[3];
                             parameter[0] = this.Sender;
-                            parameter[1] = this.Command;
+                            parameter[1] = this.Command.getCommand();
                             parameter[2] = this.Args;
 
                             executor.Invoke(instance, parameter);

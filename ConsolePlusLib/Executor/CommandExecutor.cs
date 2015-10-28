@@ -8,13 +8,23 @@ using System.Threading.Tasks;
 
 namespace ConsolePlusLib.Executor
 {
+    /// <summary>
+    /// 命令执行器
+    /// </summary>
     public interface CommandExecutor
     {
         void CommandExecutor(object sender, String command, String[] args);
     }
 
+    /// <summary>
+    /// 命令执行器类扫描器
+    /// </summary>
     public class ClassDetector
     {
+        /// <summary>
+        /// 开始扫描
+        /// </summary>
+        /// <returns>继承CommandExecutor的类</returns>
         public List<Type> begin()
         {
             List<Type> temp = new List<Type>();

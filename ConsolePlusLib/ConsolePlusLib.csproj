@@ -46,8 +46,15 @@
     <Compile Include="Configuration\JsonConfiguration.cs" />
     <Compile Include="Configuration\JsonInternal.cs" />
     <Compile Include="Core\Extendsions\StringExtensions.cs" />
+    <Compile Include="Core\PluginEngines\PluginInfo.cs" />
+    <Compile Include="Core\PluginEngines\PluginManager.cs" />
     <Compile Include="Core\Server.cs" />
     <Compile Include="Events\Server\ServerExecutedCommandEvent.cs" />
+    <Compile Include="Events\Server\ServerPluginLoadEvent.cs" />
+    <Compile Include="Events\Server\ServerPluginUnloadEvent.cs" />
+    <Compile Include="Executor\Command.cs" />
+    <Compile Include="Plugin\ConsolePlugin.cs" />
+    <Compile Include="Plugin\Annotation\IPluginInfo.cs" />
     <Compile Include="Senders\Console.cs" />
     <Compile Include="Senders\User.cs" />
     <Compile Include="System.cs" />

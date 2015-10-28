@@ -1,4 +1,6 @@
 ﻿using ConsolePlusLib.Events.Server;
+using ConsolePlusLib.Executor;
+using ConsolePlusLib.Core.Extendsions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +31,18 @@ namespace ConsolePlusLib.Senders
                         args[i - 1] = cmd.Split(' ')[i];
                     }
                 }
+
+                Command cmd1 = null;
                 
-                ServerCommandReciver reciver = new ServerCommandReciver(new Console(), command, args);
+                foreach(Command c in Main.getServer().getCommands().Keys)
+                {
+                    if(c.getCommand().equalIgnoreCase(command))
+                    {
+                        cmd1 = c;
+                    }
+                }
+
+                ServerCommandReciver reciver = new ServerCommandReciver(new Console(), cmd1, args);
                 reciver.callEvent();
                 return true;
             }

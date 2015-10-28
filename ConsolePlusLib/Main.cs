@@ -1,4 +1,7 @@
 ﻿using ConsolePlusLib.Core;
+using ConsolePlusLib.Core.PluginEngines;
+using ConsolePlusLib.Executor;
+using ConsolePlusLib.Plugin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +33,14 @@ namespace ConsolePlusLib
         internal static List<String> PluginFiles { get; set; }
 
         /// <summary>
+        /// 插件
+        /// </summary>
+        internal static List<PluginInfo> Plugins = new List<PluginInfo>();
+
+        /// <summary>
         /// 所有指令
         /// </summary>
-        internal static Dictionary<String, String> Commands = new Dictionary<String, String>();
+        internal static Dictionary<Command, ConsolePlugin> Commands = new Dictionary<Command, ConsolePlugin>();
 
         /// <summary>
         /// 启动服务器
@@ -55,6 +63,5 @@ namespace ConsolePlusLib
         {
             return Main.Server;
         }
-
     }
 }
