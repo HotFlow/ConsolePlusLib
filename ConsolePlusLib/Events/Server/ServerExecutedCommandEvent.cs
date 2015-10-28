@@ -54,7 +54,7 @@ namespace ConsolePlusLib.Events.Server
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void ServerExecutedCommandHandler(Console sender, ServerExecutedCommandArg e);
+    public delegate void ServerExecutedCommandHandler(Senders.Console sender, ServerExecutedCommandArg e);
 
     public class ServerCommandReciver
     {
@@ -66,7 +66,7 @@ namespace ConsolePlusLib.Events.Server
         /// <summary>
         /// 发送者
         /// </summary>
-        private Console Sender { get; set; }
+        private Senders.Console Sender { get; set; }
 
         /// <summary>
         /// 命令
@@ -79,9 +79,9 @@ namespace ConsolePlusLib.Events.Server
         private String[] Args { get; set; }
 
         /// <summary>
-        /// 初始化
+        /// 构造服务器接收命令事件
         /// </summary>
-        public ServerCommandReciver(Console sender, String command, String[] args)
+        public ServerCommandReciver(Senders.Console sender, String command, String[] args)
         {
             this.Sender = sender;
             this.Command = command;
@@ -96,11 +96,12 @@ namespace ConsolePlusLib.Events.Server
             ServerExecutedCommandArg arguments = new ServerExecutedCommandArg(this.Command, this.Args);
 
             int size = 0;
-            foreach (String command in System.Server.getCommandList())
+            foreach (String command in Main.getServer().getCommandList())
             {
                 if (command.equalIgnoreCase(this.Command))
                 {
-                    System.Out.println("ServerConsole issued server command: /" + this.Command);
+                    size++;
+                    System.Out.println("Console issued server command: /" + this.Command);
 
                     if (ServerExecutedCommandEvent != null)
                     {
@@ -127,7 +128,6 @@ namespace ConsolePlusLib.Events.Server
                             parameter[2] = this.Args;
 
                             executor.Invoke(instance, parameter);
-                            size++;
                         }
                         catch (Exception ex)
                         {

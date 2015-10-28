@@ -46,11 +46,12 @@
     <Compile Include="Configuration\JsonConfiguration.cs" />
     <Compile Include="Configuration\JsonInternal.cs" />
     <Compile Include="Core\Extendsions\StringExtensions.cs" />
+    <Compile Include="Core\Server.cs" />
     <Compile Include="Events\Server\ServerExecutedCommandEvent.cs" />
     <Compile Include="Senders\Console.cs" />
     <Compile Include="Senders\User.cs" />
     <Compile Include="System.cs" />
-    <Compile Include="Utils\Enumeration.cs" />
+    <Compile Include="Core\Extendsions\EnumerationExtensions.cs" />
     <Compile Include="Executor\CommandExecutor.cs" />
     <Compile Include="Core\Output\Level.cs" />
     <Compile Include="Core\Output\Printer.cs" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <Folder Include="Core\Commands\" />
     <Folder Include="MySql\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

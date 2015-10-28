@@ -1,5 +1,4 @@
 ﻿using ConsolePlusLib.Core.Output;
-using ConsolePlusLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ConsolePlusLib.Core.Extendsions;
 
 namespace ConsolePlusLib.Core.Output
 {
@@ -29,7 +29,7 @@ namespace ConsolePlusLib.Core.Output
         {
             this.outputBox.SelectionColor = color;
             this.outputBox.AppendText("[" +
-                DateTime.Now.ToString("HH:mm:ss ") + new Enumeration().getDescription<Level>(level) + "]: " +
+                DateTime.Now.ToString("HH:mm:ss ") + level.getDescription() + "]: " +
                 message + Environment.NewLine);
             this.outputBox.ScrollToCaret();
         }
@@ -43,7 +43,7 @@ namespace ConsolePlusLib.Core.Output
         {
             this.outputBox.SelectionColor = color;
             this.outputBox.AppendText("[" +
-                DateTime.Now.ToString("HH:mm:ss ") + new Enumeration().getDescription<Level>(Level.Info) + "]: " +
+                DateTime.Now.ToString("HH:mm:ss ") + Level.Info.getDescription() + "]: " +
                 message + Environment.NewLine);
             this.outputBox.ScrollToCaret();
         }
@@ -57,7 +57,7 @@ namespace ConsolePlusLib.Core.Output
         {
             this.outputBox.SelectionColor = Color.ForestGreen;
             this.outputBox.AppendText("[" +
-                DateTime.Now.ToString("HH:mm:ss ") + new Enumeration().getDescription<Level>(level) + "]: " +
+                DateTime.Now.ToString("HH:mm:ss ") + level.getDescription() + "]: " +
                 message + Environment.NewLine);
             this.outputBox.ScrollToCaret();
         }
@@ -70,7 +70,7 @@ namespace ConsolePlusLib.Core.Output
         {
             this.outputBox.SelectionColor = Color.ForestGreen;
             this.outputBox.AppendText("[" +
-                DateTime.Now.ToString("HH:mm:ss ") + new Enumeration().getDescription<Level>(Level.Info) + "]: " +
+                DateTime.Now.ToString("HH:mm:ss ") + Level.Info.getDescription() + "]: " +
                 message + Environment.NewLine);
             this.outputBox.ScrollToCaret();
         }
