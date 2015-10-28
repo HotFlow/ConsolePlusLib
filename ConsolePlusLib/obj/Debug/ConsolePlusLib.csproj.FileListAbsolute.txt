@@ -1,0 +1,5 @@
+C:\Users\jimmy\Documents\Visual Studio 2015\Projects\ConsolePlusLib-master\ConsolePlusLib\obj\Debug\ConsolePlusLib.csprojResolveAssemblyReference.cache
+C:\Users\jimmy\Documents\Visual Studio 2015\Projects\ConsolePlusLib-master\ConsolePlusLib\bin\Debug\ConsolePlusLib.dll
+C:\Users\jimmy\Documents\Visual Studio 2015\Projects\ConsolePlusLib-master\ConsolePlusLib\bin\Debug\ConsolePlusLib.pdb
+C:\Users\jimmy\Documents\Visual Studio 2015\Projects\ConsolePlusLib-master\ConsolePlusLib\obj\Debug\ConsolePlusLib.dll
+C:\Users\jimmy\Documents\Visual Studio 2015\Projects\ConsolePlusLib-master\ConsolePlusLib\obj\Debug\ConsolePlusLib.pdb
