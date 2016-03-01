@@ -1,4 +1,4 @@
-﻿using ConsolePlusLib.Core.Output;
+﻿using ConsolePlusLib.Utils.Output;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsolePlusLib.Core.Extendsions
+namespace ConsolePlusLib.Utils.Extendsions
 {
     public static class EnumerationExtensions
     {
@@ -41,7 +41,7 @@ namespace ConsolePlusLib.Core.Extendsions
             }
             catch (Exception ex)
             {
-                System.Out.println(Level.Error, Color.ForestGreen, ex.ToString());
+                Console.Out.println(Level.Error, Color.ForestGreen, ex.ToString());
                 return null;
             }
         }

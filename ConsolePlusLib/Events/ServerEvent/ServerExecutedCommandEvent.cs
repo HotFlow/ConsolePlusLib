@@ -1,5 +1,5 @@
-﻿using ConsolePlusLib.Core.Extendsions;
-using ConsolePlusLib.Core.Output;
+﻿using ConsolePlusLib.Utils.Extendsions;
+using ConsolePlusLib.Utils.Output;
 using ConsolePlusLib.Executor;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsolePlusLib.Events.Server
+namespace ConsolePlusLib.Events.ServerEvent
 {
     /// <summary>
     /// 服务器执行命令事件
@@ -53,7 +53,7 @@ namespace ConsolePlusLib.Events.Server
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void ServerExecutedCommandHandler(Senders.Console sender, ServerExecutedCommandArg e);
+    public delegate void ServerExecutedCommandHandler(Senders.ServerConsole sender, ServerExecutedCommandArg e);
 
     public class ServerCommandReciver
     {
@@ -65,7 +65,7 @@ namespace ConsolePlusLib.Events.Server
         /// <summary>
         /// 发送者
         /// </summary>
-        private Senders.Console Sender { get; set; }
+        private Senders.ServerConsole Sender { get; set; }
 
         /// <summary>
         /// 命令
@@ -80,7 +80,7 @@ namespace ConsolePlusLib.Events.Server
         /// <summary>
         /// 构造服务器接收命令事件
         /// </summary>
-        public ServerCommandReciver(Senders.Console sender, Command command, String[] args)
+        public ServerCommandReciver(Senders.ServerConsole sender, Command command, String[] args)
         {
             this.Sender = sender;
             this.Command = command;
@@ -95,12 +95,12 @@ namespace ConsolePlusLib.Events.Server
             ServerExecutedCommandArg arguments = new ServerExecutedCommandArg(this.Command, this.Args);
 
             int size = 0;
-            foreach (Command command in Main.getServer().getCommands().Keys)
+            foreach (Command command in Console.getServer().getCommands().Keys)
             {
                 if (command.Equals(this.Command))
                 {
                     size++;
-                    System.Out.println("Console issued server command: /" + this.Command.getCommand());
+                    Console.Out.println("Console issued server command: /" + this.Command.getCommand());
 
                     if (ServerExecutedCommandEvent != null)
                     {
@@ -130,7 +130,7 @@ namespace ConsolePlusLib.Events.Server
                         }
                         catch (Exception ex)
                         {
-                            System.Out.println(Level.Severe, ex.ToString());
+                            Console.Out.println(Level.Severe, ex.ToString());
                         }
                     }
 
@@ -139,7 +139,7 @@ namespace ConsolePlusLib.Events.Server
 
             if (size <= 0)
             {
-                System.Out.println("Unknown command. Type \"/help\" for help.");
+                Console.Out.println("Unknown command. Type \"/help\" for help.");
             }
         }
     }

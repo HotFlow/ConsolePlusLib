@@ -1,5 +1,5 @@
-﻿using ConsolePlusLib.Core.Output;
-using ConsolePlusLib.Events.Server;
+﻿using ConsolePlusLib.Utils.Output;
+using ConsolePlusLib.Events.ServerEvent;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,7 +54,7 @@ namespace ConsolePlusLib.Core.PluginEngines
         {
             try
             {
-                Main.PluginFiles.Add(file);
+                Console.PluginFiles.Add(file);
                 ServerPluginLoader loader = new ServerPluginLoader(file);
 
                 String name = loader.getPluginInfo().PluginName;
@@ -63,7 +63,7 @@ namespace ConsolePlusLib.Core.PluginEngines
 
                 Boolean canLoad = true;
 
-                foreach (PluginInfo info in Main.Plugins.ToArray())
+                foreach (PluginInfo info in Console.getServer().getPlugins().ToArray())
                 {
                     if (info.PluginName.Equals(name) && info.PluginAuthor.Equals(author) && info.PluginVersion.Equals(version))
                     {
@@ -82,16 +82,16 @@ namespace ConsolePlusLib.Core.PluginEngines
                     return;
                 }
 
-                System.Out.println("[" + name + "] Enabling v." + version);
+                Console.Out.println(("[" + name + "] Enabling v." + version));
 
                 loader.load();
 
-                Main.Plugins.Add(loader.getPluginInfo());
+                Console.getServer().getPlugins().Add(loader.getPluginInfo());
 
             }
             catch (Exception ex)
             {
-                System.Out.println(Level.Error, ex.ToString());
+                Console.Out.println(Level.Error, ex.ToString());
             }
         }
 
@@ -103,7 +103,7 @@ namespace ConsolePlusLib.Core.PluginEngines
         {
             try
             {
-                Main.PluginFiles.Remove(file);
+                Console.PluginFiles.Remove(file);
                 ServerPluginUnistaller unistaller = new ServerPluginUnistaller(file);
 
                 String name = unistaller.getPluginInfo().PluginName;
@@ -112,7 +112,7 @@ namespace ConsolePlusLib.Core.PluginEngines
 
                 Boolean canUnload = false;
 
-                foreach (PluginInfo info in Main.Plugins.ToArray())
+                foreach (PluginInfo info in Console.getServer().getPlugins().ToArray())
                 {
                     if (info.PluginName.Equals(name) && info.PluginAuthor.Equals(author) && info.PluginVersion.Equals(version))
                     {
@@ -131,13 +131,13 @@ namespace ConsolePlusLib.Core.PluginEngines
                     return;
                 }
 
-                System.Out.println("[" + name + "] Disabling v." + version);
+                Console.Out.println(("[" + name + "] Disabling v." + version));
 
                 unistaller.unload();
 
-                for (int i = 0; i < Main.getServer().getPlugins().Count; i++)
+                for (int i = 0; i < Console.getServer().getPlugins().Count; i++)
                 {
-                    PluginInfo info = Main.getServer().getPlugins()[i];
+                    PluginInfo info = Console.getServer().getPlugins()[i];
 
                     if (unistaller.getPluginInfo().PluginName.Equals(info.PluginName) &&
                         unistaller.getPluginInfo().PluginVersion.Equals(info.PluginVersion) &&
@@ -145,14 +145,14 @@ namespace ConsolePlusLib.Core.PluginEngines
                         unistaller.getPluginInfo().PluginAnnotation.Equals(info.PluginAnnotation) &&
                         unistaller.getPluginInfo().FilePath.Equals(info.FilePath))
                     {
-                        Main.Plugins.Remove(info);
+                        Console.getServer().getPlugins().Remove(info);
                     }
                 }
 
             }
             catch (Exception ex)
             {
-                System.Out.println(Level.Error, ex.ToString());
+                Console.Out.println(Level.Error, ex.ToString());
             }
         }
     }

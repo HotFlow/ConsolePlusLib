@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsolePlusLib.Events.Server
+namespace ConsolePlusLib.Events.ServerEvent
 {
     /// <summary>
     /// 服务器插件卸载事件参数
@@ -144,7 +144,7 @@ namespace ConsolePlusLib.Events.Server
             }
             catch (Exception ex)
             {
-                System.Out.println(ex.ToString());
+                Console.Out.println(ex.ToString());
             }
 
         }

@@ -23,7 +23,7 @@ namespace ConsolePlusLib.Executor
         /// </summary>
         /// <param name="command">命令</param>
         /// <param name="annotation">注释</param>
-        public Command(String command,String annotation)
+        public Command(String command, String annotation)
         {
             this.command = command;
             this.annotation = annotation;

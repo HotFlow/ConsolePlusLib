@@ -1,4 +1,4 @@
-﻿using ConsolePlusLib.Core.Output;
+﻿using ConsolePlusLib.Utils.Output;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace ConsolePlusLib.Executor
         {
             List<Type> temp = new List<Type>();
 
-            foreach (String file in Main.PluginFiles)
+            foreach (String file in Console.PluginFiles)
             {
                 try
                 {
@@ -47,7 +47,7 @@ namespace ConsolePlusLib.Executor
                 }
                 catch (Exception ex)
                 {
-                    System.Out.println(Level.Severe, ex.ToString());
+                    Console.Out.println(Level.Severe, ex.ToString());
                 }
             }
 
@@ -55,7 +55,7 @@ namespace ConsolePlusLib.Executor
             List<Assembly> Assemblies = new List<Assembly>();
 
             Assemblies.Add(this.GetType().Assembly);
-            Assemblies.Add(Main.Assembly);
+            Assemblies.Add(Console.Assembly);
 
             foreach (Assembly assembly in Assemblies)
             {

@@ -1,4 +1,4 @@
-﻿using ConsolePlusLib.Core.Output;
+﻿using ConsolePlusLib.Utils.Output;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ConsolePlusLib.Core.Extendsions;
+using ConsolePlusLib.Utils.Extendsions;
 
-namespace ConsolePlusLib.Core.Output
+namespace ConsolePlusLib.Utils.Output
 {
     /// <summary>
     /// 输出器

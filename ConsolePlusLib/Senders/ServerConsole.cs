@@ -1,6 +1,6 @@
-﻿using ConsolePlusLib.Events.Server;
+﻿using ConsolePlusLib.Events.ServerEvent;
 using ConsolePlusLib.Executor;
-using ConsolePlusLib.Core.Extendsions;
+using ConsolePlusLib.Utils.Extendsions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsolePlusLib.Senders
 {
-    public class Console
+    public class ServerConsole
     {
         /// <summary>
         /// 执行命令
@@ -34,7 +34,7 @@ namespace ConsolePlusLib.Senders
 
                 Command cmd1 = null;
                 
-                foreach(Command c in Main.getServer().getCommands().Keys)
+                foreach(Command c in Console.getServer().getCommands().Keys)
                 {
                     if(c.getCommand().equalIgnoreCase(command))
                     {
@@ -42,7 +42,7 @@ namespace ConsolePlusLib.Senders
                     }
                 }
 
-                ServerCommandReciver reciver = new ServerCommandReciver(new Console(), cmd1, args);
+                ServerCommandReciver reciver = new ServerCommandReciver(new ServerConsole(), cmd1, args);
                 reciver.callEvent();
                 return true;
             }

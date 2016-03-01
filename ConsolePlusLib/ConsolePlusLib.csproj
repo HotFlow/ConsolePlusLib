@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -43,34 +44,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\TribeLib\Mappers\MySqlCondition.cs">
+      <Link>MySql\MySqlCondition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TribeLib\Mappers\MySqlSlot.cs">
+      <Link>MySql\MySqlSlot.cs</Link>
+    </Compile>
     <Compile Include="Configuration\JsonConfiguration.cs" />
     <Compile Include="Configuration\JsonInternal.cs" />
-    <Compile Include="Core\Extendsions\StringExtensions.cs" />
+    <Compile Include="Core\Protocol\ProtocolKey.cs" />
+    <Compile Include="Executor\Annotation\IPermission.cs" />
+    <Compile Include="MySql\MySqlSlotRule.cs" />
+    <Compile Include="Executor\Permission.cs" />
+    <Compile Include="MySql\MySql.cs" />
+    <Compile Include="Utils\Extendsions\StringExtensions.cs" />
     <Compile Include="Core\PluginEngines\PluginInfo.cs" />
     <Compile Include="Core\PluginEngines\PluginManager.cs" />
     <Compile Include="Core\Server.cs" />
-    <Compile Include="Events\Server\ServerExecutedCommandEvent.cs" />
-    <Compile Include="Events\Server\ServerPluginLoadEvent.cs" />
-    <Compile Include="Events\Server\ServerPluginUnloadEvent.cs" />
+    <Compile Include="Events\ServerEvent\ServerExecutedCommandEvent.cs" />
+    <Compile Include="Events\ServerEvent\ServerPluginLoadEvent.cs" />
+    <Compile Include="Events\ServerEvent\ServerPluginUnloadEvent.cs" />
+    <Compile Include="Events\UserEvent\UserExecutedCommandEvent.cs" />
+    <Compile Include="Events\UserEvent\UserJoinEvent.cs" />
+    <Compile Include="Events\UserEvent\UserNameChangeEvent.cs" />
+    <Compile Include="Events\UserEvent\UserPrefixChangeEvent.cs" />
+    <Compile Include="Events\UserEvent\UserQuitEvent.cs" />
+    <Compile Include="Events\UserEvent\UserRecivedMessageEvent.cs.cs" />
+    <Compile Include="Events\UserEvent\UserSendMessageEvent.cs" />
     <Compile Include="Executor\Command.cs" />
     <Compile Include="Plugin\ConsolePlugin.cs" />
     <Compile Include="Plugin\Annotation\IPluginInfo.cs" />
-    <Compile Include="Senders\Console.cs" />
+    <Compile Include="Senders\ServerConsole.cs" />
     <Compile Include="Senders\User.cs" />
-    <Compile Include="System.cs" />
-    <Compile Include="Core\Extendsions\EnumerationExtensions.cs" />
+    <Compile Include="Utils\Extendsions\EnumerationExtensions.cs" />
     <Compile Include="Executor\CommandExecutor.cs" />
-    <Compile Include="Core\Output\Level.cs" />
-    <Compile Include="Core\Output\Printer.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="Utils\Output\Level.cs" />
+    <Compile Include="Utils\Output\Printer.cs" />
+    <Compile Include="Console.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Enumeration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Commands\" />
-    <Folder Include="MySql\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)bin\Debug\ConsolePlusLib.dll" "C:\Users\Jerry\Documents\Visual Studio 2015\Projects\ConsolePlus\bin\Debug" /y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

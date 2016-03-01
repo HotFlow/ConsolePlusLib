@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsolePlusLib.Core.Extendsions
+namespace ConsolePlusLib.Utils.Extendsions
 {
     /// <summary>
     /// 字符串扩展

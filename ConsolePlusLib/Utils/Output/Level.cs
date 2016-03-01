@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsolePlusLib.Core.Output
+namespace ConsolePlusLib.Utils.Output
 {
     /// <summary>
     /// 输出等级
